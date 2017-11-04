@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorPrimary"
+
+
+    tools:context="com.example.gaurav.javatutorial.programs.TestingActivity">
+
+
+    <io.github.kbiakov.codeview.CodeView
+        android:id="@+id/code_view1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </io.github.kbiakov.codeview.CodeView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:padding="4dp"
+        android:text="Output:"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/output"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:padding="8dp"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/black">
+
+    </TextView>
+
+</LinearLayout>

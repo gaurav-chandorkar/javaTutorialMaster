@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "475069092667",
+    "firebase_url": "https://javatutorial-fd8a1.firebaseio.com",
+    "project_id": "javatutorial-fd8a1",
+    "storage_bucket": "javatutorial-fd8a1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:475069092667:android:a74271bd9775a39e",
+        "android_client_info": {
+          "package_name": "com.example.gaurav.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "475069092667-r7efovjm6q43r058rqlovsjkc5blg5d0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.gaurav.myapplication",
+            "certificate_hash": "0b177d775a04ad06d2902567555b283d9092bd81"
+          }
+        },
+        {
+          "client_id": "475069092667-vsmvo7an6jn5djdjnv4i25f5hd1jblce.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5Sc3YMjF4tLb_03avZP5_1XL7eEvC8sQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "475069092667-vsmvo7an6jn5djdjnv4i25f5hd1jblce.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

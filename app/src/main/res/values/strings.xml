@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">JavaTutorial</string>
+
+
+    <string name="listing_py" formatted="false">
+        from timeit import Timer\n
+            \n
+            tmp = \"Python 3.2.2 (default, Jun 12 2011, 15:08:59) [MSC v.1500 32 bit (Intel)] on win32.\"\n
+            \n
+            def case1(): # A. Incremental concatenations in cycle\n
+            s = \"\"\n
+            for i in range(10000):\n
+            s += tmp\n
+            \n
+            def case2(): # Б. temporary list and join\n
+            s = []\n
+            for i in range(10000):\n
+            s.append(tmp)\n
+            s = \"\".join(s)\n
+            \n
+            def case3(): # C. list expression and join\n
+            return \"\".join([tmp for i in range(10000)])\n
+            \n
+            def case4(): # D. generator expression join\n
+            return \"\".join(tmp for i in range(10000))\n
+            \n
+            for v in range(1,5):\n
+            print (Timer(\"func()\",\"from __main__ import case%s as func\" % v).timeit(200))\n
+    </string>
+
+    <string name="listing_java" formatted="false">
+        public class Hello { \n
+        \t @override \n
+        public static void main(String args[]) {
+        \n \t \t System.out.println(\"Hello \")
+        \n}\n
+        }
+    </string>
+
+    <!-- Program -->
+
+    <string name="str_Program_name">Program Name</string>
+    <string name="have_attempted">Yoh have attepmted &#160;</string>
+    <string name="str_total">Total &#160;</string>
+    <string name="str_program">&#160;Programs</string>
+</resources>
