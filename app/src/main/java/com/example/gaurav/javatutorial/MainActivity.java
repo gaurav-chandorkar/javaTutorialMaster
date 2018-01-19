@@ -50,7 +50,7 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         setTitle("DashBoard");
-
+        Log.e(TAG, "onCreate: " );
         cardViewYoutube.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,7 +67,31 @@ public class MainActivity extends BaseActivity {
     protected void onStart() {
         super.onStart();
         setProgramDashboard();
+        Log.e(TAG, "onStart: " );
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.e(TAG, "onResume: " );
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.e(TAG, "onPause: " );
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.e(TAG, "onStop: ");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.e(TAG, "onDestroy: " );
     }
 
     private void setProgramDashboard() {

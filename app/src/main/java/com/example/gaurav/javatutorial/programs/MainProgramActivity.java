@@ -45,18 +45,18 @@ public class MainProgramActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         context = MainProgramActivity.this;
         recyclerViewProgram.setLayoutManager(new LinearLayoutManager(this));
-        recyclerViewProgram.setAdapter(programRecyclerAdapter=new ProgramRecyclerAdapter());
+        recyclerViewProgram.setAdapter(programRecyclerAdapter = new ProgramRecyclerAdapter());
 
         recyclerViewProgram.addOnItemTouchListener(new RecyclerItemClickListener(context, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
                 Log.d(TAG, "onItemClick: " + position);
-                ProgramRecyclerAdapter.ProgramViewHolder holder= (ProgramRecyclerAdapter.ProgramViewHolder) recyclerViewProgram.findViewHolderForAdapterPosition(position);
-                Log.e(TAG, "onItemClick: "+holder.btnIndex.getText());
-               Program program= programRecyclerAdapter.getItem(position);
-                startActivity(new Intent(context,ProgramActivity.class)
-                .putExtra(KEY_PROGRAM_ID,program.getProgramID())
-                .putExtra(KEY_PROGRAM_NAME,program.getProgramName()));
+                ProgramRecyclerAdapter.ProgramViewHolder holder = (ProgramRecyclerAdapter.ProgramViewHolder) recyclerViewProgram.findViewHolderForAdapterPosition(position);
+                Log.e(TAG, "onItemClick: " + holder.btnIndex.getText());
+                Program program = programRecyclerAdapter.getItem(position);
+                startActivity(new Intent(context, ProgramActivity.class)
+                        .putExtra(KEY_PROGRAM_ID, program.getProgramID())
+                        .putExtra(KEY_PROGRAM_NAME, program.getProgramName()));
 
             }
         }));
@@ -65,6 +65,7 @@ public class MainProgramActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayOptions(ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_SHOW_TITLE);
         setTitle("Programs");
+        Log.e(TAG, "onCreate: " );
 
     }
 
@@ -72,13 +73,28 @@ public class MainProgramActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         //recyclerViewProgram.addOnItemTouchListener();
+        Log.e(TAG, "onStart: " );
+
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-
+    protected void onPause() {
+        super.onPause();
+        Log.e(TAG, "onPause: " );
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.e(TAG, "onStop: ");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.e(TAG, "onDestroy: " );
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -92,8 +108,9 @@ public class MainProgramActivity extends AppCompatActivity {
 
     public class ProgramRecyclerAdapter extends RecyclerView.Adapter<ProgramRecyclerAdapter.ProgramViewHolder> {
         List<Program> programList;
-         public ProgramRecyclerAdapter() {
-            programList=new ProgramTable(context).getProgramList();
+
+        public ProgramRecyclerAdapter() {
+            programList = new ProgramTable(context).getProgramList();
         }
 
         @Override
@@ -105,13 +122,13 @@ public class MainProgramActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(ProgramViewHolder holder, int position) {
-            Program program=programList.get(position);
+            Program program = programList.get(position);
             holder.textViewProName.setText(program.getProgramName());
-            holder.btnIndex.setText(""+program.getProgramID());
+            holder.btnIndex.setText("" + program.getProgramID());
 
         }
 
-        public Program getItem(int position){
+        public Program getItem(int position) {
             return programList.get(position);
         }
 
@@ -127,7 +144,7 @@ public class MainProgramActivity extends AppCompatActivity {
             public ProgramViewHolder(View itemView) {
                 super(itemView);
                 textViewProName = itemView.findViewById(R.id.tv_program_name);
-                btnIndex=itemView.findViewById(R.id.btn_index);
+                btnIndex = itemView.findViewById(R.id.btn_index);
             }
         }
     }

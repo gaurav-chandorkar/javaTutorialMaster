@@ -1,10 +1,8 @@
 package com.example.gaurav.javatutorial.programs;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.CheckBox;
@@ -12,6 +10,7 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import com.example.gaurav.javatutorial.R;
+import com.example.gaurav.javatutorial.app.BaseActivity;
 import com.example.gaurav.javatutorial.database.ProgramTable;
 
 import butterknife.BindView;
@@ -24,12 +23,11 @@ import io.github.kbiakov.codeview.highlight.ColorTheme;
 import static com.example.gaurav.javatutorial.utility.IntentKeys.KEY_PROGRAM_ID;
 import static com.example.gaurav.javatutorial.utility.IntentKeys.KEY_PROGRAM_NAME;
 
-public class ProgramActivity extends AppCompatActivity {
+public class ProgramActivity extends BaseActivity {
     TextView textViewSyntax;
     String programName, programString;
     int programID;
     ProgramTable programTable;
-    Context context;
     @BindView(R.id.code_view)
     CodeView codeView;
     @BindView(R.id.output)
@@ -49,7 +47,7 @@ public class ProgramActivity extends AppCompatActivity {
         String highlighted = highlighter.highlight("java", code);
         textViewSyntax.setText(Html.fromHtml(highlighted));*/
         initializeObjects();
-
+        Log.e(TAG, "onCreate: " );
 
     }
 
@@ -59,8 +57,10 @@ public class ProgramActivity extends AppCompatActivity {
         programString = programTable.getProgramString(String.valueOf(programID));
         codeView(codeView);
         tvOutput.setText(programTable.getProgramOutput(String.valueOf(programID)));
-
+        Log.e(TAG, "onResume: " );
     }
+
+
 
     public void codeView(CodeView codeView) {
         //codeView.setCode(getString(R.string.listing_py), "py");
@@ -85,7 +85,7 @@ public class ProgramActivity extends AppCompatActivity {
 
     @OnCheckedChanged(R.id.chk_complete)
     public void onCheckedComplete() {
-        programTable.markProgramComplete(programID);
+        programTable.markProgramComplete(programID, 1);
         Log.d(TAG, "onCheckedComplete: ");
     }
 
@@ -104,12 +104,20 @@ public class ProgramActivity extends AppCompatActivity {
         actionBar.setDisplayOptions(ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_SHOW_TITLE);
         setTitle(programName);
         programTable = new ProgramTable(context);
-
+        if (programTable.isCurrentProgramCompleted(programID) == 1)
+            checkBoxComplete.setChecked(true);
+        else
+            checkBoxComplete.setChecked(false
+            );
         checkBoxComplete.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                //       Log.e(TAG, "onCheckedChangedgrv: " );
-                programTable.markProgramComplete(programID);
+                      Log.e(TAG, "onCheckedChangedgrv: "+b );
+                if (b)
+                programTable.markProgramComplete(programID,1);
+                else
+                    programTable.markProgramComplete(programID,0);
+
             }
         });
 

@@ -121,11 +121,23 @@ public class ProgramTable {
 
     }
 
-    public void markProgramComplete(int programID) {
+    public void markProgramComplete(int programID, int i) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(PROGRAM_STATUS, 1);
+        contentValues.put(PROGRAM_STATUS, i);
 
         int update = sqLiteDatabase.update(PROGRAM_TABLE, contentValues, PROGRAM_ID + "=?", new String[]{"" + programID});
-        Log.d(TAG, "markProgramComplete: " + update);
+        Log.d(TAG, "markProgramComplete: " + update+" i "+i);
+    }
+
+    public int isCurrentProgramCompleted(int programId) {
+        String[] arr={PROGRAM_ID,PROGRAM_STATUS};
+        int count=0;
+        Cursor cursor=sqLiteDatabase.query(PROGRAM_TABLE,arr, PROGRAM_ID+"=?",new String[]{""+programId},null,null,null);
+        if (cursor.moveToFirst()){
+            count=cursor.getInt(cursor.getColumnIndex(PROGRAM_STATUS));
+            Log.e(TAG, "isCurrentProgramCompleted: "+count );
+            cursor.close();
+        }
+        return count;
     }
 }
